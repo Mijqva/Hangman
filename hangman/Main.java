@@ -1,7 +1,7 @@
 package hangman;
 import java.io.IOException;
-
 import static hangman.Game.iterateOverWord;
+import static hangman.WordList.getWord;
 
 
 public class Main {
@@ -15,7 +15,7 @@ public class Main {
         if (inpVal.contains("Start")){
             System.out.println("Игра началась");
             System.out.println("Я загадал слово. У тебя есть несколько попыток чтобы его отгадать");
-            iterateOverWord(WordList.getWord());
+            iterateOverWord(getWord());
 
         }else {
             System.out.println("Неверная команда, выполнение прекращено");

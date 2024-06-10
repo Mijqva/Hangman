@@ -2,10 +2,14 @@ package hangman;
 
 import java.io.IOException;
 
+import static hangman.Utils.readConsole;
+import static hangman.Utils.ReplaceChars;
+import static hangman.paintMan.paintMan;
+
 public class Game {
     protected static void iterateOverWord(String Word) throws IOException {
         char[] arrWord = Word.toCharArray();
-        char[] arrHiddenWord = Utils.ReplaceChars(Word).toCharArray();
+        char[] arrHiddenWord = ReplaceChars(Word).toCharArray();
         int numOfErrors = 0;
         int numOfSuccess = 0;
 
@@ -13,7 +17,7 @@ public class Game {
 
         for (;;){
             System.out.println("Введите букву");
-            char currChar = Utils.readConsole().charAt(0);//не забыть отвалидировать инпут
+            char currChar = readConsole().charAt(0);//не забыть отвалидировать инпут
             boolean isHit = false;
 
             for (int j=0;j<arrWord.length;j++){
@@ -29,7 +33,7 @@ public class Game {
             }else{
                 ++numOfErrors;
             }
-            paintMan.paintMan(numOfErrors);
+            paintMan(numOfErrors);
             System.out.println("Число ошибок:" + numOfErrors);
 
             if(numOfSuccess == arrWord.length) {
