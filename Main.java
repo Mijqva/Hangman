@@ -4,21 +4,15 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException{
-        // System.out.println(getWord());
+
         System.out.println("Это игра Виселица. Чтобы начать игру, введите Start");
 
         String inpVal = new String(readConsole());
-        System.out.println(inpVal);
+        //System.out.println(inpVal);
         if (inpVal.contains("Start")){
             System.out.println("Игра началась");
             System.out.println("Я загадал слово. У тебя есть несколько попыток чтобы его отгадать");
-            String WordToGuess = new String(getWord());
-            System.out.println(ReplaceChars(WordToGuess));
-            //iterateOverWord(WordToGuess);
-            //StringBuilder EncryptedWord = new StringBuilder(ReplaceChars(getWord()));
-            //EncryptedWord.setCharAt(4,'A');
-            //System.out.println(EncryptedWord);
-
+            iterateOverWord(getWord());
 
         }else {
             System.out.println("Неверная команда, выполнение прекращено");
@@ -28,12 +22,31 @@ public class Main {
 
     }
 
-    private static void iterateOverWord(String Word){
-        StringBuilder EncryptedWord = new StringBuilder(ReplaceChars(Word));
-        EncryptedWord.setCharAt(4,'A');
-        for (int i = 0; i<Word.length();i++){
+    private static void iterateOverWord(String Word) throws IOException{
+        char[] arrWord = Word.toCharArray();
+        char[] arrHiddenWord = ReplaceChars(Word).toCharArray();
+
+        System.out.println(arrHiddenWord);
+
+        for (int i=0;i<7;i++){
+            System.out.println("Введите букву");
+            char currChar = readConsole().charAt(0);//не забыть отвалидировать инпут
+            boolean isHit = false;
+            for (int j=0;j<arrWord.length;j++){
+                if (currChar == arrWord[j]){
+                    arrHiddenWord[j]=currChar;
+                    isHit = true;
+                }
+
+            }
+            if(isHit){
+                System.out.println(arrHiddenWord);
+            }
+
 
         }
+
+
 
     }
     private static String getWord(){
