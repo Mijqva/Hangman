@@ -10,6 +10,7 @@ public class Game {
     protected static void iterateOverWord(String Word) throws IOException {
         char[] arrWord = Word.toCharArray();
         char[] arrHiddenWord = ReplaceChars(Word).toCharArray();
+
         int numOfErrors = 0;
         int numOfSuccess = 0;
 
@@ -17,7 +18,7 @@ public class Game {
 
         for (;;){
             System.out.println("Введите букву");
-            char currChar = readConsole().charAt(0);//не забыть отвалидировать инпут
+            char currChar = readConsole().charAt(0);
             boolean isHit = false;
 
             for (int j=0;j<arrWord.length;j++){
@@ -28,12 +29,12 @@ public class Game {
                 }
             }
 
-            if(isHit){
-                System.out.println(arrHiddenWord);
-            }else{
+            if(!isHit) {
                 ++numOfErrors;
             }
+
             paintMan(numOfErrors);
+            System.out.println(arrHiddenWord);
             System.out.println("Число ошибок:" + numOfErrors);
 
             if(numOfSuccess == arrWord.length) {
